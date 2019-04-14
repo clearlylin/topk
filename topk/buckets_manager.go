@@ -12,6 +12,7 @@ type hash_item struct {
 	index int
 }
 
+// split big file into small file
 type BucketsManager struct {
 	Number  int
 	hash    Hash
@@ -27,6 +28,8 @@ type BucketsManager struct {
 	isParallel bool
 }
 
+// multiple goroutines calc hash and write file
+// too fierce for chan
 func (bm *BucketsManager) InitParallel(chanSize int, hashWorking int, hashs []Hash) {
 	bm.writeErr = nil
 	bm.isParallel = true
@@ -68,6 +71,7 @@ func (bm *BucketsManager) ParallelWrite2(urls string, hash Hash) error {
 	return bm.Buckets[int(index)].Write(urls)
 }
 
+// too fierce for chan
 func (bm *BucketsManager) ParallelWrite(urls string) error {
 	if bm.writeErr != nil {
 		return bm.writeErr

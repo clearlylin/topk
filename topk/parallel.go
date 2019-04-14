@@ -103,6 +103,7 @@ func SerailTopK(bm *BucketsManager, topN int) ([]*Tuple, error) {
 
 const BATCH_SIZE = 700000
 
+// batch processing more better
 func ParallelBatch(bm *BucketsManager, reader *bufio.Reader, tasks int) error {
 
 	hash := make([]Hash, 0)
@@ -176,6 +177,7 @@ func ParallelBatch(bm *BucketsManager, reader *bufio.Reader, tasks int) error {
 	return bm.Flush()
 }
 
+// for InitParallel, but poor performance
 func ParallelSplit(bm *BucketsManager, reader *bufio.Reader, chanSize, tasks int) error {
 	hash := make([]Hash, 0)
 	for i := 0; i < tasks; i++ {
