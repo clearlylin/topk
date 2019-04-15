@@ -21,6 +21,7 @@ func (f *fnvHash64) HashU64(str string) uint64 {
 }
 
 //calc the hash value of the last 40 characters
+// not adopted
 func Suffix40Hash64(content string) uint64 {
 	h64 := fnv.New64()
 	start := len(content) - 40

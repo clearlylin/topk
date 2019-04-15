@@ -5,8 +5,7 @@
 * 拆分文件，大文件拆分小文件
 * 拆分计算，处理发送至不同计算节点
 * 最后合并，取topk
-* 与MapReduce计算架构类似
-* 内存限制，控制每步中内存使用量
+* 与MapReduce计算架构类似, 内存限制，控制每步中内存使用量
 
 ## 文件拆分
 
@@ -34,3 +33,7 @@
 
 * 流水线处理，split, statistic, sort, merge
 * 并行合并流水线处理，涉及中间文件合并操作，稍微麻烦一些
+
+## Test Data
+
+[data Source address](http://www.cs.columbia.edu/CAVE/databases/pubfig/download/)

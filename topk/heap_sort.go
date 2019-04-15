@@ -11,6 +11,7 @@ func (t *Tuple) Size() int {
 	return 8 + len(t.Key)
 }
 
+// topk heap
 type TupleTopKHeap struct {
 	TopK   int
 	Tuples []*Tuple

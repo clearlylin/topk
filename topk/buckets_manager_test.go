@@ -21,7 +21,7 @@ func test_init(t *testing.T) (*BucketsManager, *os.File) {
 		t.Fatal("InitFileBucketManager Failed.", len(bm.Buckets))
 	}
 
-	dataFile, err := os.Open("/data/work/src/topk/data/dev_urls")
+	dataFile, err := os.Open("../data/dev_urls")
 	if err != nil {
 		t.Fatalf("Open Failed. %v", err)
 	}

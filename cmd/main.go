@@ -7,7 +7,6 @@ import (
 	"log"
 	"os"
 	"runtime"
-	"runtime/pprof"
 	"strings"
 	"topk/topk"
 )
@@ -62,19 +61,19 @@ func writeOut(tuples []*topk.Tuple) error {
 
 func main() {
 
-	cpuf, err := os.Create("./cpu_profile")
-	if err != nil {
-		log.Fatal(err)
-	}
-	pprof.StartCPUProfile(cpuf)
-	defer pprof.StopCPUProfile()
+	// cpuf, err := os.Create("./cpu_profile")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// pprof.StartCPUProfile(cpuf)
+	// defer pprof.StopCPUProfile()
 
-	memf, err := os.Create("./memory_profile")
-	if err != nil {
-		log.Fatal(err)
-	}
-	pprof.WriteHeapProfile(memf)
-	defer memf.Close()
+	// memf, err := os.Create("./memory_profile")
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
+	// pprof.WriteHeapProfile(memf)
+	// defer memf.Close()
 
 	flag.Parse()
 	if filePath == "" {
@@ -137,7 +136,7 @@ func main() {
 	}
 
 	if err != nil {
-		log.Fatal("SerailTopK", err)
+		log.Fatal("TopK", err)
 	}
 	if err = writeOut(tuples); err != nil {
 		writeConsole(tuples)

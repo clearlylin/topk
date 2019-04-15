@@ -101,10 +101,20 @@ func SerailTopK(bm *BucketsManager, topN int) ([]*Tuple, error) {
 	return result, nil
 }
 
-const BATCH_SIZE = 700000
+// BATCH_SIZE * 128 == 125MB
+const BATCH_SIZE = 1000000
+
+//url length 128 byte
+const BATCH_SIZE_BYTES = 128000000
 
 // batch processing more better
 func ParallelBatch(bm *BucketsManager, reader *bufio.Reader, tasks int) error {
+
+	batchLineSize := BATCH_SIZE
+	bufferSize := int(bm.maxSize / int64(tasks+1))
+	if bufferSize < BATCH_SIZE_BYTES {
+		batchLineSize = bufferSize / 128
+	}
 
 	hash := make([]Hash, 0)
 	working := make(map[int]bool, tasks)
@@ -132,7 +142,7 @@ func ParallelBatch(bm *BucketsManager, reader *bufio.Reader, tasks int) error {
 			}
 			return err
 		}
-		if batchSize == BATCH_SIZE {
+		if batchSize == batchLineSize {
 			running := false
 			for key, run := range working {
 				if !run {
