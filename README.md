@@ -37,3 +37,8 @@
 ## Test Data
 
 [data Source address](http://www.cs.columbia.edu/CAVE/databases/pubfig/download/)
+
+## heap sort
+
+* As a strategy, it might be better.
+* Dependency interface
